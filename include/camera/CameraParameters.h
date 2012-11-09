@@ -128,6 +128,26 @@ public:
     void dump() const;
     status_t dump(int fd, const Vector<String16>& args) const;
 
+    // 11/9/2012 g60madman - Adding specific keys to communicate with our proprietary libcamera.so.
+    // The libcamera.so file used is taken from the Cherry Gingerbread ROM the same libcamera.so
+    // used in CM7. To find these keys the following command was run against the CM9 Source
+    // $ ~/android/prebuilt/linux-x86/toolchain/arm-linux-androideabi-4.4.x/bin/arm-linux-androideabi-objdump -T libcamera.so | grep CameraParameters
+    // then the list generated was cross referenced against this file
+
+    static const char KEY_BRIGHTNESS[];
+    static const char KEY_MAX_BRIGHTNESS[];
+    static const char KEY_MIN_BRIGHTNESS[];
+    static const char KEY_DEF_CONTRAST[];
+    static const char KEY_DEF_SHARPNESS[];
+    static const char KEY_DEF_BRIGHTNESS[];
+    static const char KEY_DEF_SATURATION[];
+    static const char KEY_WIDESCREEN[];
+    static const char WIDESCREEN_4_3[];
+    static const char WIDESCREEN_5_3[];
+    static const char KEY_SUPPORTED_WIDESCREEN[];
+    // Needed for Motorola Triumph, removed from #ifdef Samsung
+    static const char KEY_SUPPORTED_ISO_MODES[];
+
     // Parameter keys to communicate between camera application and driver.
     // The access (read/write, read only, or write only) is viewed from the
     // perspective of applications, not driver.
@@ -593,7 +613,6 @@ public:
     static const char KEY_EXIF_DATETIME[];
 #ifndef SAMSUNG_CAMERA_HARDWARE
     static const char KEY_ISO_MODE[];
-    static const char KEY_SUPPORTED_ISO_MODES[];
 #endif
 #endif
 
